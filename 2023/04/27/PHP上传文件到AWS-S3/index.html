@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="胡椒大叔">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="PHP上传文件到AWS-S3"/>
+  <meta property="og:description" content="胡椒的主要成分是胡椒碱，也含有一定量的芳香油、粗蛋白、粗脂肪及可溶性氮，能祛腥、解油腻，助消化" />
+  <meta property="og:site_name" content="胡椒大叔"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://example.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="胡椒大叔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>胡椒大叔</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">PHP上传文件到AWS-S3</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  主页
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  文档
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a target="_blank" rel="noopener" href="https://github.com/wenhao26/toolbox">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  电子邮件
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By 胡椒大叔</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2023-04-27</span>
+            <span class="time">09:06:13</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E8%83%BD/">开发技能</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/PHP/">#PHP</a> <a class="tag" href="/tags/S3/">#S3</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h5 id="Amazon-Simple-Storage-Service-Amazon-S3-是一种对象存储服务，提供行业领先的可扩展性、数据可用性、安全性和性能。各种规模和行业的客户可以为几乎任何使用案例存储和保护任意数量的数据，例如数据湖、云原生应用程序和移动应用程序。通过经济高效的存储类和易于使用的管理功能，您可以优化成本、组织数据并配置精细调整过的访问控制，从而满足特定的业务、组织和合规性要求。"><a href="#Amazon-Simple-Storage-Service-Amazon-S3-是一种对象存储服务，提供行业领先的可扩展性、数据可用性、安全性和性能。各种规模和行业的客户可以为几乎任何使用案例存储和保护任意数量的数据，例如数据湖、云原生应用程序和移动应用程序。通过经济高效的存储类和易于使用的管理功能，您可以优化成本、组织数据并配置精细调整过的访问控制，从而满足特定的业务、组织和合规性要求。" class="headerlink" title="Amazon Simple Storage Service (Amazon S3) 是一种对象存储服务，提供行业领先的可扩展性、数据可用性、安全性和性能。各种规模和行业的客户可以为几乎任何使用案例存储和保护任意数量的数据，例如数据湖、云原生应用程序和移动应用程序。通过经济高效的存储类和易于使用的管理功能，您可以优化成本、组织数据并配置精细调整过的访问控制，从而满足特定的业务、组织和合规性要求。"></a>Amazon Simple Storage Service (Amazon S3) 是一种对象存储服务，提供行业领先的可扩展性、数据可用性、安全性和性能。各种规模和行业的客户可以为几乎任何使用案例存储和保护任意数量的数据，例如数据湖、云原生应用程序和移动应用程序。通过经济高效的存储类和易于使用的管理功能，您可以优化成本、组织数据并配置精细调整过的访问控制，从而满足特定的业务、组织和合规性要求。</h5><span id="more"></span>
+
+<h4 id="申请开通-AWS-S3-服务"><a href="#申请开通-AWS-S3-服务" class="headerlink" title="申请开通 AWS-S3 服务"></a>申请开通 AWS-S3 服务</h4><h5 id="在应用中心获取配置（如何申请本文章就不细说啦），下面是我整理一些配置项，仅供参考。"><a href="#在应用中心获取配置（如何申请本文章就不细说啦），下面是我整理一些配置项，仅供参考。" class="headerlink" title="在应用中心获取配置（如何申请本文章就不细说啦），下面是我整理一些配置项，仅供参考。"></a>在应用中心获取配置（如何申请本文章就不细说啦），下面是我整理一些配置项，仅供参考。</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">;AWS-S3配置</span><br><span class="line">S3_URL      = <span class="string">&#x27;https://xxxxx.s3.us-west-1.amazonaws.com/&#x27;</span></span><br><span class="line">S3_BUCKET   = <span class="string">&#x27;xxxxxxxxx&#x27;</span></span><br><span class="line">S3_ENDPOINT = <span class="string">&#x27;us-west-1&#x27;</span></span><br><span class="line">S3_KEY      = <span class="string">&#x27;xxxxxxxxxxxxxxxxxxxxxx&#x27;</span></span><br><span class="line">S3_SECRET   = <span class="string">&#x27;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="如何在PHP项目中使用"><a href="#如何在PHP项目中使用" class="headerlink" title="如何在PHP项目中使用"></a>如何在PHP项目中使用</h4><h5 id="首先我们还是要安装一下官方提供的SDK，使用-composer-下载包即可。Github地址"><a href="#首先我们还是要安装一下官方提供的SDK，使用-composer-下载包即可。Github地址" class="headerlink" title="首先我们还是要安装一下官方提供的SDK，使用 composer 下载包即可。Github地址"></a>首先我们还是要安装一下官方提供的SDK，使用 composer 下载包即可。<a href="github%EF%BC%9Ahttps://github.com/aws/aws-sdk-php">Github地址</a></h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require aws/aws-sdk-php</span><br></pre></td></tr></table></figure>
+
+<h4 id="开始写个例子"><a href="#开始写个例子" class="headerlink" title="开始写个例子"></a>开始写个例子</h4><h5 id="下面是我写了一个静态方法来使用S3的相关功能，实例项目使用，你可以根据你使用的PHP框架，如：laravel、yii等，这些都会有集成的类库。"><a href="#下面是我写了一个静态方法来使用S3的相关功能，实例项目使用，你可以根据你使用的PHP框架，如：laravel、yii等，这些都会有集成的类库。" class="headerlink" title="下面是我写了一个静态方法来使用S3的相关功能，实例项目使用，你可以根据你使用的PHP框架，如：laravel、yii等，这些都会有集成的类库。"></a>下面是我写了一个静态方法来使用S3的相关功能，实例项目使用，你可以根据你使用的PHP框架，如：laravel、yii等，这些都会有集成的类库。</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 上传图片到AWS-S3</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> File   $file        文件</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string $storageName 存储名称</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> array</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">uploadImgToAWSS3</span>(<span class="params">File <span class="variable">$file</span>, <span class="keyword">string</span> <span class="variable">$storageName</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="title function_ invoke__">validate</span>([</span><br><span class="line">            <span class="string">&#x27;file&#x27;</span> =&gt; [</span><br><span class="line">                <span class="string">&#x27;fileSize&#x27;</span> =&gt; <span class="number">10485760</span>,</span><br><span class="line">                <span class="string">&#x27;fileExt&#x27;</span>  =&gt; <span class="string">&#x27;jpg,png,gif,jpeg&#x27;</span>,</span><br><span class="line">                <span class="string">&#x27;fileMime&#x27;</span> =&gt; <span class="string">&#x27;image/jpeg,image/png,image/gif&#x27;</span>,</span><br><span class="line">            ]</span><br><span class="line">        ])-&gt;<span class="title function_ invoke__">check</span>([<span class="string">&#x27;file&#x27;</span> =&gt; <span class="variable">$file</span>]);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (ValidateException <span class="variable">$e</span>) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$e</span>-&gt;<span class="title function_ invoke__">getError</span>();<span class="keyword">die</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$group</span>     = <span class="string">&quot;<span class="subst">&#123;$storageName&#125;</span>/&quot;</span> . <span class="title function_ invoke__">date</span>(<span class="string">&#x27;Ymd&#x27;</span>) . <span class="string">&#x27;/&#x27;</span>; <span class="comment">// 文件夹作为分组对象处理</span></span><br><span class="line">    <span class="variable">$realPath</span>  = <span class="variable">$file</span>-&gt;<span class="title function_ invoke__">getRealPath</span>(); <span class="comment">// 上传文件资源路径</span></span><br><span class="line">    <span class="variable">$extension</span> = <span class="variable">$file</span>-&gt;<span class="title function_ invoke__">extension</span>(); <span class="comment">// 文件后缀</span></span><br><span class="line">    <span class="variable">$filename</span>  = <span class="variable">$group</span> . <span class="title function_ invoke__">md5_file</span>(<span class="variable">$file</span>-&gt;<span class="title function_ invoke__">getRealPath</span>()) . <span class="string">&#x27;.&#x27;</span> . <span class="variable">$extension</span>; <span class="comment">// 新地址文件名称</span></span><br><span class="line"></span><br><span class="line">    <span class="variable">$credentials</span> = <span class="keyword">new</span> <span class="title class_">Credentials</span>(<span class="title function_ invoke__">env</span>(<span class="string">&#x27;S3_KEY&#x27;</span>), <span class="title function_ invoke__">env</span>(<span class="string">&#x27;S3_SECRET&#x27;</span>));</span><br><span class="line">    <span class="variable">$s3</span> = <span class="keyword">new</span> <span class="title class_">S3Client</span>([</span><br><span class="line">        <span class="string">&#x27;version&#x27;</span>     =&gt; <span class="string">&#x27;latest&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;region&#x27;</span>      =&gt; <span class="title function_ invoke__">env</span>(<span class="string">&#x27;AWS.S3_ENDPOINT&#x27;</span>), <span class="comment">// AWS区域和终端节点</span></span><br><span class="line">        <span class="string">&#x27;credentials&#x27;</span> =&gt; <span class="variable">$credentials</span>, <span class="comment">// 加载证书</span></span><br><span class="line">        <span class="string">&#x27;debug&#x27;</span>       =&gt; <span class="literal">false</span> <span class="comment">// 开启debug模式</span></span><br><span class="line">    ]);</span><br><span class="line">    <span class="variable">$bucket</span> = <span class="title function_ invoke__">env</span>(<span class="string">&#x27;S3_BUCKET&#x27;</span>); <span class="comment">// AWS存储桶名称</span></span><br><span class="line">    <span class="variable">$source</span> = <span class="variable">$realPath</span>; <span class="comment">// 需要上传的文件</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 分段上传</span></span><br><span class="line">    <span class="variable">$uploader</span> = <span class="keyword">new</span> <span class="title class_">MultipartUploader</span>(<span class="variable">$s3</span>, <span class="variable">$source</span>, [</span><br><span class="line">        <span class="string">&#x27;bucket&#x27;</span> =&gt; <span class="variable">$bucket</span>,</span><br><span class="line">        <span class="string">&#x27;key&#x27;</span>    =&gt; <span class="variable">$filename</span>,</span><br><span class="line">        <span class="string">&#x27;ACL&#x27;</span>    =&gt; <span class="string">&#x27;public-read&#x27;</span>, <span class="comment">// 设置访问权限公开，不然访问不了</span></span><br><span class="line"></span><br><span class="line">        <span class="string">&#x27;before_initiate&#x27;</span> =&gt; <span class="function"><span class="keyword">function</span> (<span class="params">Command <span class="variable">$command</span></span>) </span>&#123;</span><br><span class="line">            <span class="variable">$command</span>[<span class="string">&#x27;CacheControl&#x27;</span>] = <span class="string">&#x27;max-age=3600&#x27;</span>;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&#x27;before_upload&#x27;</span>   =&gt; <span class="function"><span class="keyword">function</span> (<span class="params">Command <span class="variable">$command</span></span>) </span>&#123;</span><br><span class="line">            <span class="variable">$command</span>[<span class="string">&#x27;RequestPayer&#x27;</span>] = <span class="string">&#x27;requester&#x27;</span>;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&#x27;before_complete&#x27;</span> =&gt; <span class="function"><span class="keyword">function</span> (<span class="params">Command <span class="variable">$command</span></span>) </span>&#123;</span><br><span class="line">            <span class="variable">$command</span>[<span class="string">&#x27;RequestPayer&#x27;</span>] = <span class="string">&#x27;requester&#x27;</span>;</span><br><span class="line">        &#125;,</span><br><span class="line">    ]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="variable">$result</span> = <span class="variable">$uploader</span>-&gt;<span class="title function_ invoke__">upload</span>();</span><br><span class="line">        <span class="keyword">return</span> [</span><br><span class="line">            <span class="string">&#x27;path&#x27;</span> =&gt; <span class="title function_ invoke__">urldecode</span>(<span class="variable">$result</span>[<span class="string">&#x27;Key&#x27;</span>]),</span><br><span class="line">            <span class="string">&#x27;url&#x27;</span>  =&gt; <span class="title function_ invoke__">urldecode</span>(<span class="variable">$result</span>[<span class="string">&#x27;ObjectURL&#x27;</span>])</span><br><span class="line">        ];</span><br><span class="line">    &#125; <span class="keyword">catch</span> (MultipartUploadException <span class="variable">$e</span>) &#123;</span><br><span class="line">        <span class="comment">// 上传失败，返回错误信息</span></span><br><span class="line">        <span class="variable">$uploader</span> = <span class="keyword">new</span> <span class="title class_">MultipartUploader</span>(<span class="variable">$s3</span>, <span class="variable">$source</span>, [</span><br><span class="line">            <span class="string">&#x27;state&#x27;</span> =&gt; <span class="variable">$e</span>-&gt;<span class="title function_ invoke__">getState</span>(),</span><br><span class="line">        ]);</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$e</span>-&gt;<span class="title function_ invoke__">getMessage</span>();<span class="keyword">die</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
