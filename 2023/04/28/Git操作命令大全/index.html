@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="胡椒大叔">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Git操作命令大全"/>
+  <meta property="og:description" content="胡椒的主要成分是胡椒碱，也含有一定量的芳香油、粗蛋白、粗脂肪及可溶性氮，能祛腥、解油腻，助消化" />
+  <meta property="og:site_name" content="胡椒大叔"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://example.com"/>
+  
+    <link rel="alternate" href="/atom.xml" title="胡椒大叔" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>胡椒大叔</title>
+
+  <!-- Bootstrap CSS -->
+  
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  
+  
+<link rel="stylesheet" href="/css/style.light.css">
+
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Git操作命令大全</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  主页
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  文档
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a target="_blank" rel="noopener" href="https://github.com/wenhao26/toolbox">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:<your-email-address>">
+                  
+                  电子邮件
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By 胡椒大叔</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2023-04-28</span>
+            <span class="time">15:13:06</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/%E5%BC%80%E5%8F%91%E6%8A%80%E8%83%BD/">开发技能</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Git/">#Git</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h5 id="整理了一些Git常用的命令，方便日常开发的使用（更多命令持续更新中…）。文章中的命令不是最详细的，可以帮助你快速去熟悉某些指令，具体详情用法，可以谷歌一下或者查阅官方文档。"><a href="#整理了一些Git常用的命令，方便日常开发的使用（更多命令持续更新中…）。文章中的命令不是最详细的，可以帮助你快速去熟悉某些指令，具体详情用法，可以谷歌一下或者查阅官方文档。" class="headerlink" title="整理了一些Git常用的命令，方便日常开发的使用（更多命令持续更新中…）。文章中的命令不是最详细的，可以帮助你快速去熟悉某些指令，具体详情用法，可以谷歌一下或者查阅官方文档。"></a>整理了一些Git常用的命令，方便日常开发的使用（更多命令持续更新中…）。文章中的命令不是最详细的，可以帮助你快速去熟悉某些指令，具体详情用法，可以谷歌一下或者查阅官方文档。</h5><span id="more"></span>
+
+<h4 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h4><h5 id="空的项目中添加远程仓库"><a href="#空的项目中添加远程仓库" class="headerlink" title="空的项目中添加远程仓库"></a>空的项目中添加远程仓库</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;# test&quot;</span> &gt;&gt; README.md</span><br><span class="line">git init</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m <span class="string">&quot;first commit&quot;</span></span><br><span class="line">git branch -M main</span><br><span class="line">git remote add origin &lt;你的远程仓库&gt;</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+
+<h5 id="已有的项目中添加远程仓库"><a href="#已有的项目中添加远程仓库" class="headerlink" title="已有的项目中添加远程仓库"></a>已有的项目中添加远程仓库</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin &lt;你的远程仓库&gt;</span><br><span class="line">git branch -M main</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+
+<h5 id="将文件添加到暂存区"><a href="#将文件添加到暂存区" class="headerlink" title="将文件添加到暂存区"></a>将文件添加到暂存区</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#添加所有文件</span></span><br><span class="line">git add .</span><br><span class="line"></span><br><span class="line"><span class="comment">#添加指定文件</span></span><br><span class="line">git add &lt;文件路径&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="提交"><a href="#提交" class="headerlink" title="提交"></a>提交</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;描述&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="推送到远程仓库"><a href="#推送到远程仓库" class="headerlink" title="推送到远程仓库"></a>推送到远程仓库</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br><span class="line">或者</span><br><span class="line">git push -u origin &lt;分支名&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="从远程更新或拉取"><a href="#从远程更新或拉取" class="headerlink" title="从远程更新或拉取"></a>从远程更新或拉取</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
+
+<h5 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#回退到上一个版本</span></span><br><span class="line">git reset --hard HEAD^:</span><br><span class="line"></span><br><span class="line"><span class="comment">#回退到指定版本（(其中d7b5是想回退的指定版本号的前几位)）</span></span><br><span class="line">git reset --hard d7b5:</span><br></pre></td></tr></table></figure>
+
+<h5 id="查看仓库操作历史记录"><a href="#查看仓库操作历史记录" class="headerlink" title="查看仓库操作历史记录"></a>查看仓库操作历史记录</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reflog</span><br></pre></td></tr></table></figure>
+
+<h5 id="重新指向仓库地址"><a href="#重新指向仓库地址" class="headerlink" title="重新指向仓库地址"></a>重新指向仓库地址</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">1. 删除项目中的仓库地址</span><br><span class="line">git remote <span class="built_in">rm</span> origin</span><br><span class="line"></span><br><span class="line">2. 添加新的git地址</span><br><span class="line">git remote add origin &lt;你的远程仓库&gt;</span><br><span class="line"></span><br><span class="line">3. 设置本地develop分支关联远程develop分支</span><br><span class="line">git fetch</span><br><span class="line"></span><br><span class="line">4. 修改origin后面分支名称，如master分支可改为 origin/master master</span><br><span class="line">git branch --set-upstream-to=origin/develop develop</span><br><span class="line">git branch --set-upstream-to=origin/qa qa</span><br><span class="line">git branch --set-upstream-to=origin/master master</span><br><span class="line">git branch --set-upstream-to=origin/rebuild rebuild</span><br></pre></td></tr></table></figure>
+
+<h5 id="查看当前仓库地址"><a href="#查看当前仓库地址" class="headerlink" title="查看当前仓库地址"></a>查看当前仓库地址</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote show origin</span><br></pre></td></tr></table></figure>
+
+<h5 id="找到历史提交的-commit-ID"><a href="#找到历史提交的-commit-ID" class="headerlink" title="找到历史提交的 commit ID"></a>找到历史提交的 commit ID</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --pretty=oneline --abbrev-commit</span><br></pre></td></tr></table></figure>
+
+<h4 id="分支相关命令"><a href="#分支相关命令" class="headerlink" title="分支相关命令"></a>分支相关命令</h4><h5 id="查看当前分支"><a href="#查看当前分支" class="headerlink" title="查看当前分支"></a>查看当前分支</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure>
+
+<h5 id="查看所有分支"><a href="#查看所有分支" class="headerlink" title="查看所有分支"></a>查看所有分支</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch -r</span><br><span class="line">或者</span><br><span class="line">git branch -a</span><br></pre></td></tr></table></figure>
+
+<h5 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout &lt;指定分支名&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="分支合并（比如发布功能，需要将你的分支合并到main分支上）"><a href="#分支合并（比如发布功能，需要将你的分支合并到main分支上）" class="headerlink" title="分支合并（比如发布功能，需要将你的分支合并到main分支上）"></a>分支合并（比如发布功能，需要将你的分支合并到main分支上）</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#将某个分支合并到当前分支上</span></span><br><span class="line">git merge &lt;指定分支名&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="标签相关命令"><a href="#标签相关命令" class="headerlink" title="标签相关命令"></a>标签相关命令</h4><h5 id="列出tab列表"><a href="#列出tab列表" class="headerlink" title="列出tab列表"></a>列出tab列表</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag</span><br></pre></td></tr></table></figure>
+
+<h5 id="创建轻量级标签（没有附带其他的信息）"><a href="#创建轻量级标签（没有附带其他的信息）" class="headerlink" title="创建轻量级标签（没有附带其他的信息）"></a>创建轻量级标签（没有附带其他的信息）</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag &lt;标签名&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="创带注释的标签"><a href="#创带注释的标签" class="headerlink" title="创带注释的标签"></a>创带注释的标签</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag -a &lt;标签名&gt; -m <span class="string">&quot;描述&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="将标签推送到远程仓库（此步骤执行完，远程仓库将能看到打的标签）"><a href="#将标签推送到远程仓库（此步骤执行完，远程仓库将能看到打的标签）" class="headerlink" title="将标签推送到远程仓库（此步骤执行完，远程仓库将能看到打的标签）"></a>将标签推送到远程仓库（此步骤执行完，远程仓库将能看到打的标签）</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin &lt;标签名&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="删除标签"><a href="#删除标签" class="headerlink" title="删除标签"></a>删除标签</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git tag -d &lt;标签名&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="删除远程标签"><a href="#删除远程标签" class="headerlink" title="删除远程标签"></a>删除远程标签</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin :refs/tags/&lt;标签名&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="根据标签回退版本（常用哦）"><a href="#根据标签回退版本（常用哦）" class="headerlink" title="根据标签回退版本（常用哦）"></a>根据标签回退版本（常用哦）</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1. 查看一下tag列表</span><br><span class="line">git tag</span><br><span class="line"></span><br><span class="line">2. 查看标签详情</span><br><span class="line">git show &lt;标签名&gt;</span><br><span class="line"></span><br><span class="line">3. git show命令可以看到打tag时提交的<span class="built_in">id</span>，我们通过这个commit ID 回退代码</span><br><span class="line">git reset --hard 7441b8</span><br></pre></td></tr></table></figure>
+
+<br />
+
+<h3 id="x3D-x3D-更多命令持续更新中…-x3D-x3D"><a href="#x3D-x3D-更多命令持续更新中…-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;更多命令持续更新中…&#x3D;&#x3D;"></a>&#x3D;&#x3D;更多命令持续更新中…&#x3D;&#x3D;</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+
+<script src="/js/highlight.pack.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
